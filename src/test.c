@@ -6,7 +6,7 @@
 
 int main(int argc, char const *argv[])
 {
-    // should dispose object being returned to the pool if there is no empty slot
+    // should dispose object returned to the pool if there is no empty slot
     {
         // arrange
         const int POOL_CAPACITY = 1;
@@ -30,8 +30,6 @@ int main(int argc, char const *argv[])
         assert(ret2 == false);
 
         // cleanup
-        // obj1 is disposed by the pool
-        // obj2 is disposed by return_object call because there is no empty slot
         dispose_pool(pool, POOL_CAPACITY);
     }
 
@@ -52,7 +50,6 @@ int main(int argc, char const *argv[])
         assert(obj == NULL);
 
         // cleanup
-        // obj1 is disposed by pool
         dispose_pool(pool, POOL_CAPACITY);
     }
 
