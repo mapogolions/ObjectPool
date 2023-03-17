@@ -1,5 +1,5 @@
 run:
 	rm -rf ./build/*
 	mkdir -p ./build
-	clang -o ./build/exe.out ./app.c ./object_pool.c ./object.c
-	./build/exe.out
+	clang -o ./build/a.out ./src/*.c
+	./build/a.out

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "./object.h"
 
 object_t** new_pool(int capacity)
@@ -39,17 +40,20 @@ object_t* get_object(object_t** pool, int capacity)
     return new_object();
 }
 
-void return_object(object_t** pool, object_t* obj, int capacity)
+bool return_object(object_t** pool, object_t** obj, int capacity)
 {
     for (int i = 0; i < capacity; i++)
     {
         if (*(pool + i) == NULL)
         {
-            *(pool + i) = obj;
-            return;
+            *(pool + i) = *obj;
+            *obj = NULL;
+            return true;
         }
     }
-    dispose_object(obj);
+    dispose_object(*obj);
+    *obj = NULL;
+    return false;
 }
 
 void dispose_pool(object_t** pool, int capacity)
