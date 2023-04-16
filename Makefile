@@ -1,5 +1,7 @@
 test:
-	rm -rf ./build/*
-	mkdir -p ./build
-	clang -o ./build/a.out ./src/*.c
-	./build/a.out
+	mkdir -p ./obj ./bin
+	rm -rf ./obj/* ./bin/*
+	gcc -c ./src/*.c
+	mv *.o ./obj
+	gcc ./obj/*.o -o ./bin/a.out
+	./bin/a.out
